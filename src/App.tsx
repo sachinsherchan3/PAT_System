@@ -1,7 +1,7 @@
 import { FC, ReactElement } from "react";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import TeacherDashboard from "./pages/dashboard/TeacherDashboard";
-import Login from "./pages/login/Login";
+import Login from "./pages/auth/Splash";
 
 const App: FC = (): ReactElement => {
   const user = false;
@@ -9,10 +9,10 @@ const App: FC = (): ReactElement => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<TeacherDashboard />} />
+          <Route path="/" element={<Login />} />
           <Route
-            path="/login"
-            element={user ? <Navigate to="/" /> : <Login />}
+            path="/teacherdashboard"
+            element={user ? <TeacherDashboard /> : <Navigate to="/" />}
           />
         </Routes>
       </BrowserRouter>

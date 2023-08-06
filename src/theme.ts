@@ -17,6 +17,17 @@ const theme = createTheme({
   //   typography
   typography: {
     fontFamily: "Montserrat, sans-serif",
+    h1: {
+      fontSize: "32px",
+      fontWeight: "bold",
+      color: "#2F4858",
+    },
+
+    body1: {
+      fontSize: "20px",
+      fontWeight: "100",
+      color: "#2F4858",
+    },
   },
 });
 
