@@ -10,6 +10,7 @@ const Login: FC = (): ReactElement => {
 
   const authenticateUser = () => {
     // authenticate logic here for super admin
+    console.log(`Input email ${email}, Input password ${password}`);
   };
 
   return (
