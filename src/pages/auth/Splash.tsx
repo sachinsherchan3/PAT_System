@@ -1,8 +1,16 @@
 import { Box, Typography, Button, Divider } from "@mui/material";
 import { FC, ReactElement } from "react";
 import Googleicon from "../../components/icons/googleIcon";
+import { Link } from "react-router-dom";
 
 const SplashScreen: FC = (): ReactElement => {
+  const googleLogin = () => {
+    window.open(
+      "https://backendpatsystem.onrender.com/api/users/registration/auth/google",
+      "_self"
+    );
+  };
+
   return (
     <div>
       <Box
@@ -43,6 +51,7 @@ const SplashScreen: FC = (): ReactElement => {
               marginRight: "16px",
             },
           }}
+          onClick={googleLogin}
         >
           Sign in with Google
         </Button>
@@ -60,24 +69,29 @@ const SplashScreen: FC = (): ReactElement => {
           <Divider sx={{ width: "50%" }} />
         </Box>
         {/* continue with email button */}
-        <Button
-          variant="outlined"
-          sx={{
-            fontSize: "20px",
-            color: "#747474",
-            width: "528px",
-            height: "58px",
-            borderColor: "#bbbbbb",
-            textTransform: "none",
-          }}
-        >
-          Continue with email
-        </Button>
+        <Link to="/login" style={{ textDecoration: "none" }}>
+          <Button
+            variant="outlined"
+            sx={{
+              fontSize: "20px",
+              color: "#747474",
+              width: "528px",
+              height: "58px",
+              borderColor: "#bbbbbb",
+              textTransform: "none",
+            }}
+          >
+            Continue with email
+          </Button>
+        </Link>
         <Typography
           variant="body1"
           sx={{ fontSize: "16px", marginTop: "135px" }}
         >
-          Already have an account? Sign in
+          Already have an account?
+          <Link style={{ marginLeft: "4px" }} to="/login">
+            Sign in
+          </Link>
         </Typography>
       </Box>
       <Typography

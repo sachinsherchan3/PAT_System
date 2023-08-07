@@ -1,7 +1,8 @@
 import { FC, ReactElement } from "react";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import TeacherDashboard from "./pages/dashboard/TeacherDashboard";
-import Login from "./pages/auth/Splash";
+import Splash from "./pages/auth/Splash";
+import Login from "./pages/auth/loginForm/LoginForm";
 
 const App: FC = (): ReactElement => {
   const user = false;
@@ -9,11 +10,12 @@ const App: FC = (): ReactElement => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Splash />} />
           <Route
             path="/teacherdashboard"
             element={user ? <TeacherDashboard /> : <Navigate to="/" />}
           />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </>
