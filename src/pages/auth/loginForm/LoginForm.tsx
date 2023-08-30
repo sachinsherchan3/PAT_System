@@ -1,16 +1,37 @@
 import { FC, ReactElement, useState } from "react";
 import { Box, Typography, Stack, Button } from "@mui/material";
-import { Link } from "react-router-dom";
 import LoginEmailField from "./_loginEmailField";
 import LoginPasswordField from "./_loginPasswordField";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useLoginMutation } from "../../../slices/usersApiSlice";
+import { setCredentials } from "../../../slices/authSlice";
+import { toast } from "react-toastify";
 
 const Login: FC = (): ReactElement => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const authenticateUser = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [login, { isLoading }] = useLoginMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const authenticateUser = async () => {
     // authenticate logic here for super admin
-    console.log(`Input email ${email}, Input password ${password}`);
+    try {
+      // unwrap() : extract the resolved value from the promise
+      const res = await login({ email, password }).unwrap();
+      dispatch(setCredentials({ ...res }));
+      setEmail("");
+      setPassword("");
+      // navigate to component based on role
+      navigate("/teacherdashboard");
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
   };
 
   return (
@@ -59,14 +80,14 @@ const Login: FC = (): ReactElement => {
           </Button>
         </Stack>
 
-        <Typography
+        {/* <Typography
           variant="body1"
           sx={{ fontSize: "16px", marginTop: "35px" }}
         >
           <Link to="/register" style={{ textDecoration: "none" }}>
             Forgort password?
           </Link>
-        </Typography>
+        </Typography> */}
       </Box>
       <Typography
         variant="body1"

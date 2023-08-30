@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const SplashScreen: FC = (): ReactElement => {
   const googleLogin = () => {
     window.open(
-      "https://backendpatsystem.onrender.com/api/users/registration/auth/google",
+      "http://localhost:3000/api/users/registration/auth/google",
       "_self"
     );
   };
